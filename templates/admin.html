@@ -1,0 +1,54 @@
+{% extends "layout.html" %}
+
+{% block heading %}
+
+<div class="w3-container">
+  <h1 class="w3-center w3-animate-left	">Booksera Admin Panel</h1>
+
+{% endblock %}
+
+{% block body %}
+
+  {% with messages = get_flashed_messages() %}
+ {% if messages %}
+
+   {% for message in messages %}
+   <div class="alert alert-danger" role="alert">
+<span> {{message}} </span>
+<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+<span aria-hidden="true">&times;</span>
+</button>
+</div>
+
+   {% endfor %}
+ {% endif %}
+{% endwith %}
+<form action="{{ url_for('admin_main')}}" method="post">
+    <div class="card bg-light">
+<article class="card-body mx-auto" style="max-width: 400px ;" >
+  <div class="form-group">
+    <label for="username"><b>Username</b></label>
+    <input name="username" class="form-control" type="text" placeholder="Enter your username" required>
+
+<label for="password"><b>Password</b></label>
+<input name="password"  class="form-control" type="password" placeholder="Enter your password" required>
+
+<button  type="submit" class="btn btn-dark">Login</button>
+
+
+
+
+ </article>
+</div>
+</form>
+
+<br><br>
+<article class="bg-secondary mb-3">
+<div class="card-body text-center" style="height: 260px;">
+  <footer>&copy; Copyright 2021 Booksera- All Rights Reserved</footer>
+
+<p class="h5 text-white"></p>   <br>
+</div>
+
+</article>
+{% endblock %}

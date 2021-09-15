@@ -1,0 +1,102 @@
+{% extends 'layout.html' %}
+
+{% block heading %}
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-danger" style="font-size:15px; font-style: normal;" role="alert">
+<span> {{message}} </span>
+<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+<span aria-hidden="true">&times;</span>
+</button>
+</div>
+{% endfor %}
+{% endif %}
+{% endwith %}
+{% endblock%}
+{% block body %}
+<div class="card text-center">
+  <div style="background: url(https://images.pexels.com/photos/235994/pexels-photo-235994.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940)" class="page-holder bg-cover">
+  <div class="container-fluid">
+    <div class="topright" style="margin-top:0;">
+    <a class="btn btn-dark" href="{{ url_for('logout') }}" role="button">Log out</a>
+    </div>
+  <div class="card-header" style="color:black;   font-size: 30px;">
+      Book information
+
+  </div>
+
+  <div>
+              <img src="http://covers.openlibrary.org/b/isbn/{{book.isbn}}-M.jpg" width="200px">
+          </div>
+          <div class="card-header" style="color:black;   font-size: 30px; font-style: italic;">
+            {{book.title}}
+            </div>
+    <h6>Author : {{ book.author }}</h6>
+    <h6>Year : {{ book.year }} </h6>
+    <h6>ISBN : {{ book.isbn }}</h6>
+    <h6>Price : Pkr {{ book.price }}</h6>
+    <a href="{{url_for('buy',isbn=book.isbn,title=book.title,price=book.price)}}" class="btn btn-success">BUY IT!</a>
+
+
+  <div class="card-header" style="color:black;   font-size: 30px;">
+     Read on Goodreads
+ </div>
+  <div class="card-body">
+    <a href="https://www.goodreads.com/search?q={{book.isbn}}" class="btn btn-dark">{{book.title}}</a>
+
+
+
+
+  </div>
+
+</div>
+
+{#Dividing two cards / Book info / Goodread infos#}
+
+
+
+  <div class="card-header">
+  <div class="card-footer"style="color:black;   font-size: 30px;">
+   Share your views.
+
+    <div class="comment-wrapper">
+
+      <form method="POST" class="" style="background:black;">
+            <select id="rating" style="background:#e0e0e0 ;" name="rating" class="form-control" required>
+            <option value="1" >1</option>
+            <option value="2" >2</option>
+            <option  value="3" >3</option>
+            <option value="4" >4</option>
+            <option value="5" >5</option>
+            </select>
+            </div>
+
+          <textarea class="form-control" style="background:#e0e0e0 ;" placeholder="Write Something.." rows="2"name="review" id="comment"></textarea>
+          <br>
+          <div class="form-group col-sm">
+          <button class="btn btn-dark" type="submit">Submit</button>
+          </div>
+          <div class="clearfix"></div>
+
+</div>
+{% if reviews %}
+    {% for revie in reviews %}
+        <div class="media-body">
+            <span class="text-muted pull-right">
+              <strong class="text-success">@{{revie.username}}</strong>
+                <small class="text-muted">rated it {{revie.rating}} out of 5 stars.</small>
+            </span>
+            <p class="comment " style="color:black; font-size: 20px;" >
+            {{revie.review}}
+            </p>
+        </div>
+      <div class="clearfix"></div>
+    {% endfor %}
+{% endif %}
+</div>
+  </div>
+</div>
+
+
+{% endblock %}

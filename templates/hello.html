@@ -1,0 +1,57 @@
+{% extends "layout.html" %}
+
+{% block heading %}
+
+
+<h2>
+Booksera
+</h2>
+<div class="topright" style="margin-top:0;"> {{fullname}}
+<a class="btn btn-dark" href="{{ url_for('logout') }}" role="button">Log out</a>
+</div>
+
+<!-- </header> -->
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-success" role="alert">
+<span> {{message}} </span>
+<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+<span aria-hidden="true">&times;</span>
+</button>
+</div>
+
+   {% endfor %}
+ {% endif %}
+{% endwith %}
+
+<!-- flash -->
+
+
+<hr class="style14">
+<!-- line -->
+
+{% endblock %}
+<!-- head -->
+
+{% block body %}
+<!--background  -->
+<div style="background: url(https://aspasiasbissas.files.wordpress.com/2019/02/pexels-photo-1907785.jpeg?w=525)" class="page-holder bg-cover">
+<header class="text-center text-white py-5">
+    <h6 class="display-4 font-weight mb-4"> Enter Book credentials.</h6>
+    <p class="lead mb-0"</p>
+    </header>
+    <form class="form-inline d-flex justify-content-center md-form form-sm mt-0" action="{{ url_for('search')}}" method="post">
+    <div class="form-group">
+    <label for="title"><p style="color:white;   font-size: 23px;" >Title</p></label>
+    <input name="title" class="form-control" type="text" placeholder="Enter title" >
+    <label for="author"><p style="color:white;   font-size: 23px;" >Author</p></label>
+    <input name="author"  class="form-control" type="text" placeholder="Enter author" >
+    <label for="isbn"><p style="color:white;   font-size: 23px;" >Isbn</p></label>
+    <input name="isbn"  class="form-control" type="text" placeholder="Enter your isbn" >
+    </div>
+    <button  type="submit" class="btn btn-dark">Proceed</button>
+    </form>
+    </div>
+
+{% endblock %}

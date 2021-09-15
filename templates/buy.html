@@ -1,0 +1,73 @@
+{% extends "layout.html" %}
+
+{% block heading %}
+
+
+<h2>
+Booksera
+</h2>
+<div class="topright" style="margin-top:0;"> {{username}}
+<a class="btn btn-dark" href="{{ url_for('logout') }}" role="button">Log out</a>
+</div>
+
+<!-- </header> -->
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-success" role="alert">
+<span> {{message}} </span>
+<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+<span aria-hidden="true">&times;</span>
+</button>
+</div>
+
+   {% endfor %}
+ {% endif %}
+{% endwith %}
+
+<!-- flash -->
+
+
+<hr class="style14">
+<!-- line -->
+
+{% endblock %}
+<!-- head -->
+
+{% block body %}
+<div style="background: url(https://images2.alphacoders.com/261/thumb-1920-26102.jpg
+)" class="page-holder bg-cover">
+<header class="text-center text-white py-5">
+    <h6 class="display-4 font-weight mb-4"> Checkout</h6>
+    </header>
+    <h1 style="font-style: normal; color: blanchedalmond; font-size: 20px; text-align:center;">Book to be ordered: {{title}}</h1>
+    <h1 style="font-style: normal; color: blanchedalmond; font-size: 20px; text-align:center;">Book price: {{price}}</h1>
+    <div class="container col-6">
+        <form method="post">
+            <div class="form-group input-group">
+                <input name="address" class="form-control" placeholder="Enter your address" type="text"  required>
+            </div> <!-- form-group// -->
+            <div class="form-group input-group">
+              <input name="phone" class="form-control" placeholder="Enter your phone" type="number"  required>
+          </div> <!-- form-group// -->
+          <div class="form-group input-group">
+            <input name="quantity" class="form-control" placeholder="Enter quantity" type="number"  required>
+        </div> <!-- form-group// -->
+            <div class="form-group">
+              </div>
+        <header class="text-center text-white py-5">
+            <h6 class="display-4 font-weight mb-4"> Payment Details</h6>
+            </header>   
+            <div class="form-group input-group">
+                <input name="card_no" class="form-control" placeholder="Enter your Card number" type="text"  required>
+            </div> <!-- form-group// -->
+            <div class="form-group input-group">
+              <input name="pin" class="form-control" placeholder="Enter your pin" type="password"  required>
+          </div> <!-- form-group// -->
+          <button type="submit" class="btn btn-dark"> Submit </button> 
+        </form>
+        </div>
+
+        <br><br>
+
+{% endblock %}

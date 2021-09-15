@@ -1,0 +1,100 @@
+  {% extends "layout.html" %}
+
+  {% block heading %}
+
+
+  <h2>
+  Booksera
+  </h2>
+  <hr class="style14">
+  <div class="topright" style="margin-top:0;"> Hello publisher,{{username}}
+  <a class="btn btn-dark" href="{{ url_for('logout2') }}" role="button">Log out</a>
+  </div>
+  <div class="topleft" style="margin-top:3;   text-align: center;">
+    <a class="btn btn-dark" href="{{ url_for('user_books',username=username) }} " style="font-size: 25px;" role="button">Your books</a>
+  </div>
+
+
+  <!-- </header> -->
+  {% with messages = get_flashed_messages() %}
+  {% if messages %}
+  {% for message in messages %}
+  <div class="alert alert-success" role="alert">
+  <span> {{message}} </span>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+  <span aria-hidden="true">&times;</span>
+  </button>
+  </div>
+
+    {% endfor %}
+  {% endif %}
+  {% endwith %}
+
+  <!-- flash -->
+
+  <style>
+  .row {
+    padding: 100px;
+  }
+
+  .row-height {
+    height: 100px;
+    text-align: center;
+    padding-top: 25px;
+  }
+
+  .col-md-4,.col-md-2 {
+    background-color: #f5f3f3;
+  }
+
+  .col-md-6 {
+    background-color: #f5f3f3;
+    border-radius: 0 15px 15px 0;
+  }
+
+  .col-md-4 {
+    border-radius: 15px 0 0 15px;
+  }
+
+  </style>
+  {% endblock %}
+  <!-- head -->
+
+  {% block body %}
+
+
+  <div style="background: url(https://aspasiasbissas.files.wordpress.com/2019/02/pexels-photo-1907785.jpeg?w=525)" class="page-holder bg-cover">
+    <header class="text-center text-white py-5">
+        <h6 class="display-4 font-weight mb-4"> Publish your book</h6>
+        </header>
+        <div class="container col-6">
+        <form action="{{ url_for('publish_book')}}" method="post">
+          <div class="form-group input-group">
+                <input name="author" class="form-control" placeholder="Enter Author" type="text" required>
+            </div> <!-- form-group// -->
+            <div class="form-group input-group">
+                <input name="isbn" class="form-control" placeholder="Enter ISBN " type="text"  required>
+            </div> <!-- form-group// -->
+            <div class="form-group input-group">
+              <input name="year" class="form-control" placeholder="Enter Year" type="text" >
+            </div> <!-- form-group// -->
+            <div class="form-group input-group">
+              <!-- form-group end.// -->
+            <div class="form-group input-group">
+                <input name="details" class="form-control" placeholder="Enter Details" type="text"  required>
+            </div> <!-- form-group// -->
+            <div class="form-group input-group">
+              <input name="price" class="form-control" placeholder="Enter Price" type="number"  required>
+          </div> <!-- form-group// -->
+            <div class="form-group input-group">
+              <input name="title" class="form-control" placeholder="Enter Title" type="text"  required>
+          </div> <!-- form-group// -->
+      
+            <div class="form-group">
+              </div>
+                <button type="submit" class="btn btn-dark"> Submit </button>
+        </form>
+      </div>
+        </div>
+
+  {% endblock %}

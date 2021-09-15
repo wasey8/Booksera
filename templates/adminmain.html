@@ -1,0 +1,80 @@
+{% extends "layout.html" %}
+
+{% block heading %}
+
+
+<h2>
+Booksera
+</h2>
+<div class="topright" style="margin-top:0;"> Hello Admin, {{username}}
+<a class="btn btn-dark" href="{{ url_for('logoutadmin') }}" role="button">Log out</a>
+</div>
+
+<!-- </header> -->
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-success" role="alert">
+<span> {{message}} </span>
+<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+<span aria-hidden="true">&times;</span>
+</button>
+</div>
+
+   {% endfor %}
+ {% endif %}
+{% endwith %}
+
+<!-- flash -->
+
+<style>
+  .row {
+    padding: 100px;
+    row-gap: 10px;
+  }
+  
+  .row-height {
+    height: 100px;
+    text-align: center;
+    padding-top: 25px;
+    
+  }
+  
+  .col-md-4,.col-md-2 {
+    background-color: #f5f3f3;
+  }
+  
+  .col-md-6 {
+    background-color: #f5f3f3;
+    border-radius: 0 15px 15px 0;
+  }
+  
+  .col-md-4 {
+    border-radius: 15px 0 0 15px;
+  }
+  
+  </style>
+{% endblock %}
+<!-- head -->
+
+{% block body %}
+<div style="background: url(https://images2.alphacoders.com/261/thumb-1920-26102.jpg)" class="page-holder bg-cover">
+  <header class="text-center text-white py-5">
+      <h6 class="display-4 font-weight mb-4"> Admin Panel</h6>
+      <h6 style="text-align: left; font-size: 40px;"class="display-4 font-weight mb-4"> Book requests:</h6>
+      </header>
+      <div class="row">
+        {% for i in publishers%}
+      <div class="col-md-4 row-height">
+          <span style="font-size: medium; font-weight: bolder;">Title:{{i.title}} </span>
+      </div>
+      <div class="col-md-6 row-height">
+        <span style="font-size: medium; font-weight: bolder;">Isbn: {{i.isbn}}</span>
+        <a class="btn btn-success" href="{{ url_for('approve_book',book_isbn=i.isbn) }}" style="font-style: normal;" role="button">Approve book</a>
+        <a class="btn btn-danger" href="{{ url_for('delete_book',book_isbn=i.isbn) }}" style="font-style: normal;" role="button">Delete  book</a>
+
+    </div>
+    {% endfor %}
+      </div>
+      </div>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+
+{% block heading %}
+<div class="topright" style="margin-top:0;">
+<a class="btn btn-light" href="{{ url_for('logout') }}" role="button">Log out</a>
+</div>
+{% endblock %}
+
+
+{% block body %}
+
+<div style="background: url(https://images.unsplash.com/photo-1507842217343-583bb7270b66?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=853&q=80)" class="page-holder bg-cover">
+<div class="container-fluid">
+    <header class=" text-white py-5">
+      <h1 class="text-left">Related books:</h1>
+    </header>
+    <div>
+      <h1 class="text-left" style="color: white; font-style: normal; font-size:35px" >Searched query: {{author}}</h1>
+    {% for book in books %}
+  <div class="card w-50">
+    <div class="card-body">
+      <h5 class="card-title">Book:{{book.title}}</h5>
+      <h5 class="card-text">Wrote by {{book.author}} in year {{book.year}}, ISBN {{book.isbn}}</h5>
+      <a href="{{ url_for('review', isbn=book.isbn) }}" class="btn btn-outline-info">Get details</a>
+        </div>
+        </div>
+
+
+{% else %}
+<h6 class="text-left" style="color:white; font-size: 23px;"> No such book found.Try again with correct credentials. </h6>
+<a  href="{{ url_for('search') }}" class="btn btn-light" role="button" aria-pressed="true" style="font-weight:400;" >Search again! </a>
+{% endfor %}
+</div>
+</div>
+</div>
+{% endblock %}
